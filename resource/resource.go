@@ -14,6 +14,7 @@ type Object[T any] interface {
 	SetDeletionTimestamp(time.Time)
 	GetDeletionTimestamp() string
 	GetName() ObjectKey
+	GetGK() GroupKind
 	GetVersion() int
 	GetCurrentVersion() int
 	SetCurrentVersion(int)
@@ -114,6 +115,10 @@ func (r *Resource) SetCurrentVersion(v int) {
 
 func (r *Resource) SetResourceGroup(resourceGroup string) {
 	r.ResourceGroup = resourceGroup
+}
+
+func (r *Resource) GetGK() GroupKind {
+	return GroupKind{Group: r.ResourceGroup, Kind: r.Kind}
 }
 
 func (r *Resource) SetKind(kind string) {
