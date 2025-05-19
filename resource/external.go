@@ -16,6 +16,6 @@ type ExternalStorage[T Object[T]] interface {
 }
 
 type ExternalListener interface {
-	Listen(shardID string, f func(ctx context.Context, kind GroupKind, objectKey ObjectKey, messageType string, ack func()))
+	Listen(f func(ctx context.Context, kind GroupKind, objectKey ObjectKey, messageType string, ack func()))
 	ClearQueue(ctx context.Context) error
 }
