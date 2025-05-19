@@ -1,19 +1,21 @@
 package resource
 
+import "context"
+
 const MessageTypeUpdate = "update"
 const MessageTypeDelete = "delete"
 
 type ExternalStorage[T Object[T]] interface {
-	Create(item T) (T, error)
-	Get(shardID string, groupKind GroupKind, objectKey ObjectKey) (T, bool, error)
-	List(listOpts ListOpts) ([]T, error)
-	ListPending(shardID string, groupKind GroupKind) ([]T, error)
-	Update(item T) (T, error)
-	UpdateStatus(item T) (T, error)
-	Delete(shardID string, groupKind GroupKind, objectKey ObjectKey) error
+	Create(ctx context.Context, item T) (T, error)
+	Get(ctx context.Context, shardID string, groupKind GroupKind, objectKey ObjectKey) (T, bool, error)
+	List(ctx context.Context, listOpts ListOpts) ([]T, error)
+	ListPending(ctx context.Context, shardID string, groupKind GroupKind) ([]T, error)
+	Update(ctx context.Context, item T) (T, error)
+	UpdateStatus(ctx context.Context, item T) (T, error)
+	Delete(ctx context.Context, shardID string, groupKind GroupKind, objectKey ObjectKey) error
 }
 
 type ExternalListener interface {
-	Listen(shardID string, f func(kind GroupKind, objectKey ObjectKey, messageType string, ack func()))
-	ClearQueue() error
+	Listen(shardID string, f func(ctx context.Context, kind GroupKind, objectKey ObjectKey, messageType string, ack func()))
+	ClearQueue(ctx context.Context) error
 }
