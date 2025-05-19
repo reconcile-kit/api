@@ -52,6 +52,7 @@ type Resource struct {
 	Kind              string `json:"kind"`
 	Namespace         string `json:"namespace"`
 	Name              string `json:"name"`
+	ShardID           string `json:"shard_id"`
 	KillTimestamp     string
 	DeletionTimestamp string `json:"deletion_timestamp"`
 	Generation        int64
@@ -123,4 +124,12 @@ func (r *Resource) GetGK() GroupKind {
 
 func (r *Resource) SetKind(kind string) {
 	r.Kind = kind
+}
+
+func (r *Resource) GetShardID() string {
+	return r.ShardID
+}
+
+func (r *Resource) SetShardID(shardID string) {
+	r.ShardID = shardID
 }
