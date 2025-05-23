@@ -32,6 +32,9 @@ func deepCopyValue(val reflect.Value) reflect.Value {
 		return deepCopyValue(val.Elem())
 
 	case reflect.Struct:
+		if val.Type().PkgPath() != "" && val.Type().Name() != "" {
+			return val
+		}
 		cp := reflect.New(val.Type()).Elem()
 		for i := 0; i < val.NumField(); i++ {
 			field := val.Field(i)
