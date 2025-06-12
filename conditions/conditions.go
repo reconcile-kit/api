@@ -178,9 +178,12 @@ func SyncReady(obj ConditionsAccessor) {
 		}
 	}
 
-	if foundFalse {
+	switch {
+	case len(conds) == 0:
+		set(&conds, Ready, False, "", "")
+	case foundFalse:
 		set(&conds, Ready, False, falseReason, falseMessage)
-	} else {
+	default:
 		set(&conds, Ready, True, "", "")
 	}
 
