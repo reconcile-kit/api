@@ -40,8 +40,6 @@ type ObjectKey struct {
 }
 
 type ListOpts struct {
-	Group     string `json:"resource_group"`
-	Kind      string `json:"kind"`
 	Namespace string `json:"namespace"`
 	Name      string `json:"name"`
 	ShardID   string `json:"shard_id"`
@@ -116,10 +114,6 @@ func (r *Resource) SetCurrentVersion(v int) {
 
 func (r *Resource) SetResourceGroup(resourceGroup string) {
 	r.ResourceGroup = resourceGroup
-}
-
-func (r *Resource) GetGK() GroupKind {
-	return GroupKind{Group: r.ResourceGroup, Kind: r.Kind}
 }
 
 func (r *Resource) SetKind(kind string) {

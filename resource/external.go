@@ -8,7 +8,7 @@ const MessageTypeDelete = "delete"
 type ExternalStorage[T Object[T]] interface {
 	Create(ctx context.Context, item T) error
 	Get(ctx context.Context, groupKind GroupKind, objectKey ObjectKey) (T, bool, error)
-	List(ctx context.Context, listOpts ListOpts) ([]T, error)
+	List(ctx context.Context, groupKind GroupKind, listOpts ListOpts) ([]T, error)
 	ListPending(ctx context.Context, shardID string, groupKind GroupKind) ([]T, error)
 	Update(ctx context.Context, item T) error
 	UpdateStatus(ctx context.Context, item T) error
