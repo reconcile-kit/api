@@ -127,3 +127,15 @@ func (r *Resource) GetShardID() string {
 func (r *Resource) SetShardID(shardID string) {
 	r.ShardID = shardID
 }
+
+func (r *Resource) AddFinalizer(value string) {
+	r.Finalizers = append(r.Finalizers, value)
+}
+
+func (r *Resource) RemoveFinalizer(value string) {
+	for i, v := range r.Finalizers {
+		if v == value {
+			r.Finalizers = append(r.Finalizers[:i], r.Finalizers[i+1:]...)
+		}
+	}
+}
