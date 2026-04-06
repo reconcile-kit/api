@@ -40,9 +40,10 @@ type ObjectKey struct {
 }
 
 type ListOpts struct {
-	Namespace string `json:"namespace"`
-	Name      string `json:"name"`
-	ShardID   string `json:"shard_id"`
+	Namespace      string `json:"namespace"`
+	Name           string `json:"name"`
+	ShardID        string `json:"shard_id"`
+	LabelSelectors []LabelSelector
 }
 
 type Resource struct {
