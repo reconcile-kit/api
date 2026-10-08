@@ -44,6 +44,8 @@ type ListOpts struct {
 	Name           string `json:"name"`
 	ShardID        string `json:"shard_id"`
 	LabelSelectors []LabelSelector
+	Limit          int `json:"limit,omitempty"`
+	Offset         int `json:"offset,omitempty"`
 }
 
 type Resource struct {
